@@ -2,10 +2,6 @@
 
 Build Landing Page that uses DOM Javascript to create an interactive navigational experience for the user
 
-## Demo
-
-Detail this project, look at [demo](https://hikmanisyariful.github.io/Landing-Page-DOM/)
-
 ## Table of Contents
 
 - [Instructions](#instructions)
