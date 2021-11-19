@@ -54,6 +54,12 @@ main {
   margin: 10vh 1em 10vh;
 }
 
+@media only screen and (max-width: 35em) {
+  main {
+    margin: 20vh 1em 10vh;
+  }
+}
+
 .main-hero {
   min-height: 40vh;
   padding-top: 3em;
@@ -127,6 +133,12 @@ section {
   .landing__container {
     max-width: 50em;
     padding: 4em;
+  }
+}
+
+@media only screen and (max-width: 35em) {
+  .landing__container {
+    padding-top: 5em;
   }
 }
 

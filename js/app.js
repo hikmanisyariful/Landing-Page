@@ -25,7 +25,6 @@
 let sections;
 const navbarUl = document.getElementById("navbar__list");
 const main = document.getElementById("main");
-const liItems = [];
 
 /**
  * End Global Variables
@@ -84,7 +83,6 @@ const generateListItems = () => {
       <a class="menu__link" href="#${sectionId}">${linkName}</a>
     `;
     navbarUl.appendChild(navbarLi);
-    liItems.push(navbarLi);
   });
 };
 
@@ -99,6 +97,7 @@ const removeActiveClass = section => {
 
 // Scroll to anchor ID using scrollTO event
 const scrollSection = evt => {
+  evt.preventDefault();
   const idSection = evt.target.getAttribute("href").slice(1);
   const section = document.getElementById(idSection);
   section.scrollIntoView({ behavior: "smooth" });
@@ -118,13 +117,14 @@ addNewSection();
 generateListItems();
 
 // Scroll to section on link click
+const liItems = document.querySelectorAll(".Section");
 liItems.forEach(item => {
   item.addEventListener("click", scrollSection);
 });
 
 // Set sections as active
 /* 
-Using intersectionObserver to to asynchronously observe changes 
+Use intersectionObserver to to asynchronously observe changes 
 in the intersection of a target element with an ancestor element or with a top-level document's viewport.
 */
 let options = {
