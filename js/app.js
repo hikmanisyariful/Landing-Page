@@ -25,6 +25,7 @@
 let sections;
 const navbarUl = document.getElementById("navbar__list");
 const main = document.getElementById("main");
+const liItems = [];
 
 /**
  * End Global Variables
@@ -72,7 +73,7 @@ const addNewSection = () => {
   sections = document.querySelectorAll("section");
 };
 
-// Generate list items of navbar
+// build the nav
 const generateListItems = () => {
   // Loop NodeList[]
   sections.forEach(section => {
@@ -83,15 +84,9 @@ const generateListItems = () => {
       <a class="menu__link" href="#${sectionId}">${linkName}</a>
     `;
     navbarUl.appendChild(navbarLi);
+    liItems.push(navbarLi);
   });
 };
-
-// Add new section
-addNewSection();
-addNewSection();
-
-// build the nav
-generateListItems();
 
 // Add class 'active' to section when near top of viewport
 const addActiveClass = section => {
@@ -103,6 +98,11 @@ const removeActiveClass = section => {
 };
 
 // Scroll to anchor ID using scrollTO event
+const scrollSection = evt => {
+  const idSection = evt.target.getAttribute("href").slice(1);
+  const section = document.getElementById(idSection);
+  section.scrollIntoView({ behavior: "smooth" });
+};
 
 /**
  * End Main Functions
@@ -110,9 +110,17 @@ const removeActiveClass = section => {
  *
  */
 
+// Add new section
+addNewSection();
+addNewSection();
+
 // Build menu
+generateListItems();
 
 // Scroll to section on link click
+liItems.forEach(item => {
+  item.addEventListener("click", scrollSection);
+});
 
 // Set sections as active
 /* 
