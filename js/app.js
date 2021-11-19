@@ -80,7 +80,7 @@ const generateListItems = () => {
     const sectionId = section.getAttribute("id");
     const navbarLi = document.createElement("li");
     navbarLi.innerHTML += `
-      <a class="menu__link" href="#${sectionId}">${linkName}</a>
+      <a class="menu__link" href="#${sectionId}" data-id-section="${sectionId}">${linkName}</a>
     `;
     navbarUl.appendChild(navbarLi);
   });
@@ -136,11 +136,21 @@ const callback = entries => {
   entries.forEach(entry => {
     const section = document.getElementById(entry.target.id);
 
+    // Get active link use the attribute name "data-id-section"
+    const activeLink = document.querySelector(
+      `.menu__link[data-id-section="${entry.target.id}"]`
+    );
+
     if (entry.isIntersecting) {
       addActiveClass(section);
+      activeLink.classList.add("active");
     } else {
       if (section.classList.contains("your-active-class")) {
         removeActiveClass(section);
+      }
+
+      if (activeLink.classList.contains("active")) {
+        activeLink.classList.remove("active");
       }
     }
   });

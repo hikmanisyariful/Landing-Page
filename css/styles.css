@@ -101,6 +101,10 @@ section {
   transition: ease 0.3s all;
 }
 
+.navbar__menu .menu__link.active {
+  background-color: #cc1
+}
+
 /* Header Styles */
 .page__header {
   background: #fff;
