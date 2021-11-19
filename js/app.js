@@ -23,7 +23,8 @@
  *
  */
 let sections;
-let navbarUl = document.getElementById("navbar__list");
+const navbarUl = document.getElementById("navbar__list");
+const main = document.getElementById("main");
 
 /**
  * End Global Variables
@@ -40,7 +41,6 @@ let navbarUl = document.getElementById("navbar__list");
 // Create new section
 const addNewSection = () => {
   let number = document.getElementsByTagName("section").length + 1;
-  const main = document.getElementById("main");
   main.innerHTML += `
     <section id="section${number}" data-nav="Section ${number}" class="your-active-class">
       <div class="landing__container">
@@ -94,6 +94,13 @@ addNewSection();
 generateListItems();
 
 // Add class 'active' to section when near top of viewport
+const addActiveClass = section => {
+  section.classList.add("your-active-class");
+};
+
+const removeActiveClass = section => {
+  section.classList.remove("your-active-class");
+};
 
 // Scroll to anchor ID using scrollTO event
 
@@ -108,3 +115,30 @@ generateListItems();
 // Scroll to section on link click
 
 // Set sections as active
+/* 
+Using intersectionObserver to to asynchronously observe changes 
+in the intersection of a target element with an ancestor element or with a top-level document's viewport.
+*/
+let options = {
+  rootMargin: "0px",
+  threshold: 1.0
+};
+
+const callback = entries => {
+  entries.forEach(entry => {
+    const section = document.getElementById(entry.target.id);
+
+    if (entry.isIntersecting) {
+      addActiveClass(section);
+    } else {
+      if (section.classList.contains("your-active-class")) {
+        removeActiveClass(section);
+      }
+    }
+  });
+};
+
+let observer = new IntersectionObserver(callback, options);
+sections.forEach(target => {
+  observer.observe(target);
+});
