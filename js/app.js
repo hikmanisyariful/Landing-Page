@@ -23,6 +23,7 @@
  *
  */
 let sections;
+let navbarUl = document.getElementById("navbar__list");
 
 /**
  * End Global Variables
@@ -71,11 +72,26 @@ const addNewSection = () => {
   sections = document.querySelectorAll("section");
 };
 
+// Generate list items of navbar
+const generateListItems = () => {
+  // Loop NodeList[]
+  sections.forEach(section => {
+    const linkName = section.getAttribute("data-nav");
+    const sectionId = section.getAttribute("id");
+    const navbarLi = document.createElement("li");
+    navbarLi.innerHTML += `
+      <a class="menu__link" href="#${sectionId}">${linkName}</a>
+    `;
+    navbarUl.appendChild(navbarLi);
+  });
+};
+
+// Add new section
 addNewSection();
 addNewSection();
-// console.log(sections.length);
 
 // build the nav
+generateListItems();
 
 // Add class 'active' to section when near top of viewport
 
