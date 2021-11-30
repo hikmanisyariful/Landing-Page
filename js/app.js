@@ -129,7 +129,7 @@ in the intersection of a target element with an ancestor element or with a top-l
 */
 let options = {
   rootMargin: "0px",
-  threshold: 1.0
+  threshold: 0.6
 };
 
 const callback = entries => {

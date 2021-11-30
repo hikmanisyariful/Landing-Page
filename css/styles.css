@@ -96,13 +96,13 @@ section {
 }
 
 .navbar__menu .menu__link:hover {
-  background: #333;
-  color: #fff;
+  color: #808080;
   transition: ease 0.3s all;
 }
 
 .navbar__menu .menu__link.active {
-  background-color: #cc1
+  background-color: #333;
+  color: #fff;
 }
 
 /* Header Styles */
